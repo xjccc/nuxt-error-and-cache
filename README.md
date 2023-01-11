@@ -1,0 +1,52 @@
+# Nuxt Module
+
+1. 收集运行时错误信息
+2. 服务端生成 html 缓存
+
+## 使用方式
+
+```js
+// nuxt.config.js
+
+import { defineNuxtConfig } from 'nuxt/config'
+
+export default defineNuxtConfig({
+  modules: ['nuxt-error-and-cache'],
+  errorCacheConfig: {
+    cache: {
+      /**
+       * 开发模式下不会生效
+       * 生效会在html-response header写入res.setHeader('server-cache-times', timer)
+       */
+      dev: true
+      /**
+       * lru-cache参数配置
+       * 默认
+       *  max: 5000,
+       * ttl: 1000 * 60 * 5,
+       * allowStale: true
+       */
+      lru: {},
+      // 设置路由在服务器缓存时间-min
+      // 默认5分钟
+      routes: {
+        '/aaa': 3
+      }
+    },
+    /**
+     * 是否采集运行时错误
+     * default: true
+     * 采集内容-报错内容\报错时间\报错页面\报错位置\userAgent
+     * 项目目录下需要有logs文件夹-错误信息会写入该目录
+     * prefix: 文件前缀_YYYYMM.log
+     * path: './logs'
+     */
+    collect: {}
+  }
+})
+```
+
+## Development
+
+- Run `npm run dev:prepare` to generate type stubs.
+- Use `npm run dev` to start [playground](./playground) in development mode.
