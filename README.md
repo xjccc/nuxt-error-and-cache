@@ -2,6 +2,8 @@
 
 1. 收集运行时错误信息
 2. 服务端生成 html 缓存
+3. 清除单独链接 lrucache(url?nocache=true)
+4. 清除所有 lru-cache(url?nocache=all)
 
 ## 使用方式
 

@@ -1,5 +1,24 @@
 # nuxt-error-and-cache
 
+## 1.0.2
+
+### Patch Changes
+
+- nuxt-custom-fetch\docs: 更新/nuxt-error-and-cache\fix: 修改最低支持版本
+- 修改最低支持版本
+
+## 1.0.2-alpha.0
+
+### Patch Changes
+
+- 修改最低支持版本
+
+## 1.0.1
+
+### Patch Changes
+
+- docs 更新
+
 ## 1.0.0
 
 ### Major Changes

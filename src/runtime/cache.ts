@@ -1,7 +1,6 @@
 import LRU from 'lru-cache'
 import type { NodeIncomingMessage, NodeServerResponse } from 'h3'
 import { fromNodeMiddleware } from 'h3'
-// @ts-ignore
 import { useRuntimeConfig } from '#imports'
 const { public: { $options } } = useRuntimeConfig()
 
@@ -26,6 +25,8 @@ export default fromNodeMiddleware((req: NodeIncomingMessage, res: NodeServerResp
   if (url.includes('nocache=true')) {
     const link = url.replace(/(\?|&)?nocache=true/, '')
     cachePage.delete(link)
+  } else if (url.includes('nocache=all')) {
+    cachePage.clear()
   } else {
     const html = cachePage.get(url)
     if (html) {

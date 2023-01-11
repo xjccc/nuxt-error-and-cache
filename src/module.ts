@@ -15,10 +15,7 @@ export interface ModuleOptions {
 const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'nuxt-error-and-cache',
-    configKey: 'errorCacheConfig',
-    compatibility: {
-      nuxt: '^3.0.0'
-    }
+    configKey: 'errorCacheConfig'
   },
   defaults: {
     cache: {
