@@ -1,7 +1,4 @@
 {
   "private": true,
-  "name": "my-module-playground",
-  "dependencies": {
-    "nuxt-error-and-cache": "workspace:^0.0.1"
-  }
+  "name": "my-module-playground"
 }
