@@ -25,7 +25,7 @@ export default defineNuxtConfig({
        * lru-cache参数配置
        * 默认
        *  max: 5000,
-       * ttl: 1000 * 60 * 5,
+       * ttl: 1000 * 60 * 5,  默认根据ttl/(1000*60)缓存5分钟
        * allowStale: true
        */
       lru: {},
@@ -33,7 +33,13 @@ export default defineNuxtConfig({
       // 默认5分钟
       routes: {
         '/aaa': 3
-      }
+      },
+      /**
+       * 相对工作目录路径
+       * 排除的url地址、server端请求url（./server/api）
+       */
+      excludeDir: ['./playground/server/api/nuxt'],
+      excludePath: ['/api/nuxt/write-404']
     },
     /**
      * 是否采集运行时错误

@@ -1,5 +1,11 @@
 # nuxt-error-and-cache
 
+## 1.0.3
+
+### Patch Changes
+
+- 添加 exclude
+
 ## 1.0.2
 
 ### Patch Changes

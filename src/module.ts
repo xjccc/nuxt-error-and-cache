@@ -1,13 +1,15 @@
 import { fileURLToPath } from 'url'
 import type LRU from 'lru-cache'
-import { defineNuxtModule, addPlugin, createResolver, addServerHandler, addTemplate } from '@nuxt/kit'
-import type { NuxtModule } from '@nuxt/schema'
+import { defineNuxtModule, addPlugin, createResolver, addServerHandler } from '@nuxt/kit'
+import type { NuxtModule, RuntimeConfig } from '@nuxt/schema'
 
 export interface ModuleOptions {
   cache?: {
     dev?: boolean
-    lru?: Partial<LRU<string, {html: string}>>
-    routes?: Record<string, unknown>
+    lru?: Partial<LRU<string, { html: string }>>
+    routes?: Record<string, unknown>,
+    excludeDir?: string[]
+    excludePath?: string[]
   }
   collect?: boolean | { prefix?: string, path?: string }
 }
@@ -21,13 +23,14 @@ const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
     cache: {
       dev: true,
       lru: {},
-      routes: {}
+      routes: {},
+      excludeDir: [],
+      excludePath: []
     },
     collect: true
   },
   setup (options, nuxt) {
-    // @ts-ignore
-    nuxt.options.runtimeConfig.public.$options = options
+    nuxt.options.runtimeConfig.errorCacheConfig = { ...options as RuntimeConfig['errorCacheConfig'] }
 
     const { resolve } = createResolver(import.meta.url)
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))

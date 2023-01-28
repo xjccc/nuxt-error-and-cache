@@ -6,7 +6,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     const err = error as Error
     const route = useRoute()
 
-    $fetch('/api/nuxt/get-error', {
+    $fetch(`/api/nuxt/get-error?url=${route.path}`, {
       method: 'post',
       credentials: 'include',
       headers: headers as HeadersInit,

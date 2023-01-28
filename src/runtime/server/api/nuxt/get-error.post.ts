@@ -78,14 +78,14 @@ function fileWrite (
 }
 
 export default defineEventHandler(async (event) => {
-  const { public: { $options } } = useRuntimeConfig()
+  const { errorCacheConfig } = useRuntimeConfig()
   let collect = { path: './logs' }
-  if (typeof $options.collect === 'object') {
-    collect = $options.collect
+  if (typeof errorCacheConfig.collect === 'object') {
+    collect = errorCacheConfig.collect
   }
 
   const body = await readBody(event)
-  const { req } = event
+  const { req } = event.node
   body.ua = req.headers['user-agent']
   // body.cookie = req.headers['cookie']
   const file = collect?.path || './logs'

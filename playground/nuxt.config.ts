@@ -1,5 +1,5 @@
 import { defineNuxtConfig } from 'nuxt/config'
-import nuxtErrorCache from '../dist/module.mjs'
+import nuxtErrorCache from '..'
 
 export default defineNuxtConfig({
   modules: [
@@ -7,8 +7,13 @@ export default defineNuxtConfig({
   ],
   errorCacheConfig: {
     cache: {
+      dev: false,
       lru: {},
-      routes: {}
+      routes: {
+        '/': 10
+      },
+      excludeDir: ['./playground/server/api/nuxt'],
+      excludePath: ['/api/nuxt/write-404']
     },
     collect: {}
   }
