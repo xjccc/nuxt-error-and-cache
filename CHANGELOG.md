@@ -1,5 +1,11 @@
 # nuxt-error-and-cache
 
+## 1.0.4
+
+### Patch Changes
+
+- resEnd this 指向问题
+
 ## 1.0.3
 
 ### Patch Changes

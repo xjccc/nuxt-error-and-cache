@@ -1,6 +1,5 @@
 import LRU from 'lru-cache'
-import type { NodeIncomingMessage, NodeServerResponse } from 'h3'
-import { fromNodeMiddleware } from 'h3'
+import { NodeIncomingMessage, NodeServerResponse, fromNodeMiddleware } from 'h3'
 import { createResolver } from '@nuxt/kit'
 import glob from 'glob'
 import { useRuntimeConfig } from '#imports'
@@ -85,9 +84,8 @@ export default fromNodeMiddleware((req: NodeIncomingMessage, res: NodeServerResp
       return res.end(html.html, 'utf-8')
     }
   }
-
-  const resEnd = res.end
-  res.end = function (data: string) {
+  const resEnd = res.end.bind(res)
+  res.end = function (data) {
     if (res.statusCode === 200) {
       cachePage.set(
         url,
@@ -97,7 +95,6 @@ export default fromNodeMiddleware((req: NodeIncomingMessage, res: NodeServerResp
         { ttl: timer }
       )
     }
-
     resEnd(data, 'utf-8')
   } as NodeServerResponse['end']
   next()
