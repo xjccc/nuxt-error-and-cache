@@ -5,6 +5,13 @@ export default defineNuxtConfig({
   modules: [
     nuxtErrorCache
   ],
+  vite: {
+    server: {
+      fs: {
+        allow: ['../../../node_modules/']
+      }
+    }
+  },
   errorCacheConfig: {
     cache: {
       dev: false,

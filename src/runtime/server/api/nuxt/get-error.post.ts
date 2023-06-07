@@ -1,11 +1,13 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'url'
 import { readBody, defineEventHandler } from 'h3'
 import { useRuntimeConfig } from '#imports'
 // 获取文件名称 server/logs/errorLog_201901.log
+const rootDir = fileURLToPath(new URL('../../', import.meta.url))
+console.log(rootDir, process.cwd(), 222222)
+
 function getFileName (filePath: string, filePrefix: string) {
-  const rootDir = fileURLToPath(new URL('../../', import.meta.url))
   let path = resolve(rootDir, filePath)
 
   // filePath最后如果不是 / , 添加 /
@@ -79,7 +81,7 @@ function fileWrite (
 
 export default defineEventHandler(async (event) => {
   const { errorCacheConfig } = useRuntimeConfig()
-  let collect = { path: './logs' }
+  let collect = { path: resolve(process.cwd(), 'logs') }
   if (typeof errorCacheConfig.collect === 'object') {
     collect = errorCacheConfig.collect
   }
@@ -88,7 +90,7 @@ export default defineEventHandler(async (event) => {
   const { req } = event.node
   body.ua = req.headers['user-agent']
   // body.cookie = req.headers['cookie']
-  const file = collect?.path || './logs'
+  const file = resolve(process.cwd(), collect?.path) || resolve(process.cwd(), 'logs')
   await fileWrite(file, '', body, collect)
   return 'upload success'
 })

@@ -1,5 +1,17 @@
 # nuxt-error-and-cache
 
+## 1.0.6
+
+### Patch Changes
+
+- 获取当前工作目录
+
+## 1.0.5
+
+### Patch Changes
+
+- 修复 logs 生成文件路径错误问题
+
 ## 1.0.4
 
 ### Patch Changes

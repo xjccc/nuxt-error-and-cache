@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'url'
 import { defineEventHandler, readBody } from 'h3'

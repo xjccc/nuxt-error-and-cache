@@ -7,9 +7,11 @@
   </div>
 </template>
 <script setup lang="ts">
+console.log('index ')
+
 const test = () => {
   $fetch('/api/get-ip')
 }
 </script>
-<style lang="less" scoped>
+<style scoped>
 </style>

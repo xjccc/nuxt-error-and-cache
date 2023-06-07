@@ -31,7 +31,6 @@ const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
   },
   setup (options, nuxt) {
     nuxt.options.runtimeConfig.errorCacheConfig = { ...options as RuntimeConfig['errorCacheConfig'] }
-
     const { resolve } = createResolver(import.meta.url)
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     nuxt.options.build.transpile.push(runtimeDir)
