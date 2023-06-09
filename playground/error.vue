@@ -10,7 +10,9 @@ const route = useRoute()
 
 onMounted(() => {
   const { $write404 } = useNuxtApp()
-  $write404()
+  // $write404()
+
+  console.log(ggg)
 })
 </script>
 

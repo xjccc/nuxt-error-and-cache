@@ -47,7 +47,7 @@ export default defineNuxtConfig({
      * 采集内容-报错内容\报错时间\报错页面\报错位置\userAgent
      * 项目目录下需要有logs文件夹-错误信息会写入该目录
      * prefix: 文件前缀_YYYYMM.log
-     * path: './logs'
+     * path: './logs' 相对路径
      */
     collect: {}
   }

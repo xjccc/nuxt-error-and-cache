@@ -20,8 +20,10 @@ export default defineNuxtConfig({
         '/': 10
       },
       excludeDir: ['./playground/server/api/nuxt'],
-      excludePath: ['/api/nuxt/write-404']
+      excludePath: ['/api/nuxt/write-404', '/api/nuxt/get-error']
     },
-    collect: {}
+    collect: {
+      path: './notExist'
+    }
   }
 })

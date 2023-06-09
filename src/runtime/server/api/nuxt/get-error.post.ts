@@ -5,15 +5,11 @@ import { readBody, defineEventHandler } from 'h3'
 import { useRuntimeConfig } from '#imports'
 // 获取文件名称 server/logs/errorLog_201901.log
 const rootDir = fileURLToPath(new URL('../../', import.meta.url))
-console.log(rootDir, process.cwd(), 222222)
+
+const cwd = process.cwd()
 
 function getFileName (filePath: string, filePrefix: string) {
-  let path = resolve(rootDir, filePath)
-
-  // filePath最后如果不是 / , 添加 /
-  if (path.charAt(filePath.length - 1) !== '/') {
-    path = `${path}/`
-  }
+  const path = resolve(rootDir, filePath, filePrefix)
 
   const date = new Date()
   const year = date.getFullYear()
@@ -21,7 +17,7 @@ function getFileName (filePath: string, filePrefix: string) {
   if (+month < 10) {
     month = `0${month}`
   }
-  return `${path}${filePrefix}_${year}${month}.log`
+  return `${path}_${year}${month}.log`
 }
 
 // 若文件不存在，创建一个
@@ -45,11 +41,10 @@ function fileCreate (filename: string) {
 // 增量更新日志文件
 function fileWrite (
   filePath: string,
-  filePrefix: string,
   errData: Record<string, string>,
   options: Record<string, string> = {}
 ) {
-  const prefix = options.prefix || filePrefix
+  const prefix = options.prefix || 'nuxt'
   const filename = getFileName(filePath, prefix)
   return new Promise((resolve, reject) => {
     // 先读取文件内容
@@ -81,7 +76,7 @@ function fileWrite (
 
 export default defineEventHandler(async (event) => {
   const { errorCacheConfig } = useRuntimeConfig()
-  let collect = { path: resolve(process.cwd(), 'logs') }
+  let collect = { path: '', prefix: 'nuxt' }
   if (typeof errorCacheConfig.collect === 'object') {
     collect = errorCacheConfig.collect
   }
@@ -90,7 +85,8 @@ export default defineEventHandler(async (event) => {
   const { req } = event.node
   body.ua = req.headers['user-agent']
   // body.cookie = req.headers['cookie']
-  const file = resolve(process.cwd(), collect?.path) || resolve(process.cwd(), 'logs')
-  await fileWrite(file, '', body, collect)
+  const file = collect.path || './logs'
+
+  await fileWrite(file, body, collect)
   return 'upload success'
 })

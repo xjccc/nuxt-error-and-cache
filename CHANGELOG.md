@@ -1,5 +1,17 @@
 # nuxt-error-and-cache
 
+## 1.0.8
+
+### Patch Changes
+
+- 修复路径\prefix 问题
+
+## 1.0.7
+
+### Patch Changes
+
+- prefix
+
 ## 1.0.6
 
 ### Patch Changes
