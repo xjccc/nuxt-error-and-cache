@@ -1,5 +1,11 @@
 # nuxt-error-and-cache
 
+## 1.0.9
+
+### Patch Changes
+
+- 修复路径问题
+
 ## 1.0.8
 
 ### Patch Changes

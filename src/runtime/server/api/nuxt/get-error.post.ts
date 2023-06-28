@@ -3,12 +3,10 @@ import { resolve } from 'node:path'
 import { fileURLToPath } from 'url'
 import { readBody, defineEventHandler } from 'h3'
 import { useRuntimeConfig } from '#imports'
-// 获取文件名称 server/logs/errorLog_201901.log
-const rootDir = fileURLToPath(new URL('../../', import.meta.url))
-
-const cwd = process.cwd()
 
 function getFileName (filePath: string, filePrefix: string) {
+  // 获取文件名称 server/logs/errorLog_201901.log
+  const rootDir = fileURLToPath(new URL('../../', import.meta.url))
   const path = resolve(rootDir, filePath, filePrefix)
 
   const date = new Date()
