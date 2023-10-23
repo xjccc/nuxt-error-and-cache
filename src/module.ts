@@ -2,15 +2,16 @@ import { fileURLToPath } from 'url'
 import type LRU from 'lru-cache'
 import { defineNuxtModule, addPlugin, createResolver, addServerHandler } from '@nuxt/kit'
 import type { NuxtModule, RuntimeConfig } from '@nuxt/schema'
-
+type CacheOptions = {
+  dev?: boolean
+  production?: boolean
+  lru?: Partial<LRU<string, { html: string }>>
+  routes?: Record<string, unknown>,
+  excludeDir?: string[]
+  excludePath?: string[]
+}
 export interface ModuleOptions {
-  cache?: {
-    dev?: boolean
-    lru?: Partial<LRU<string, { html: string }>>
-    routes?: Record<string, unknown>,
-    excludeDir?: string[]
-    excludePath?: string[]
-  }
+  cache?: CacheOptions | boolean
   collect?: boolean | { prefix?: string, path?: string }
 }
 
@@ -22,6 +23,7 @@ const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
   defaults: {
     cache: {
       dev: true,
+      production: true,
       lru: {},
       routes: {},
       excludeDir: [],
@@ -42,7 +44,9 @@ const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
       })
     }
 
-    if (options.cache) {
+    const cache = options.cache
+
+    if ((typeof cache === 'boolean' && cache) || (typeof cache === 'object' && cache?.production)) {
       addServerHandler({
         handler: resolve(runtimeDir, 'cache')
       })

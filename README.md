@@ -15,12 +15,27 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   modules: ['nuxt-error-and-cache'],
   errorCacheConfig: {
+    /**
+     * cache: boolean | 
+     * {
+        dev?: boolean
+        production?: boolean
+        lru?: Partial<LRU<string, { html: string }>>
+        routes?: Record<string, unknown>,
+        excludeDir?: string[]
+        excludePath?: string[]
+     * }
+     */
     cache: {
       /**
        * 开发模式下不会生效
        * 生效会在html-response header写入res.setHeader('server-cache-times', timer)
        */
       dev: true
+      /**
+       * 默认开发环境添加缓存
+       */
+      production: true,
       /**
        * lru-cache参数配置
        * 默认
