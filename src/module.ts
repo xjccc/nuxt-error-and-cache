@@ -3,7 +3,6 @@ import type LRU from 'lru-cache'
 import { defineNuxtModule, addPlugin, createResolver, addServerHandler } from '@nuxt/kit'
 import type { NuxtModule, RuntimeConfig } from '@nuxt/schema'
 type CacheOptions = {
-  dev?: boolean
   production?: boolean
   lru?: Partial<LRU<string, { html: string }>>
   routes?: Record<string, unknown>,
@@ -15,20 +14,21 @@ export interface ModuleOptions {
   collect?: boolean | { prefix?: string, path?: string }
 }
 
+const defaultsCache = {
+  production: process.env.NODE_ENV === 'production',
+  lru: {},
+  routes: {},
+  excludeDir: [],
+  excludePath: []
+}
+
 const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'nuxt-error-and-cache',
     configKey: 'errorCacheConfig'
   },
   defaults: {
-    cache: {
-      dev: true,
-      production: true,
-      lru: {},
-      routes: {},
-      excludeDir: [],
-      excludePath: []
-    },
+    cache: defaultsCache,
     collect: true
   },
   setup (options, nuxt) {
@@ -44,9 +44,13 @@ const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
       })
     }
 
-    const cache = options.cache
+    let cache = options.cache
 
-    if ((typeof cache === 'boolean' && cache) || (typeof cache === 'object' && cache?.production)) {
+    if (typeof cache === 'boolean' && cache) {
+      cache = defaultsCache
+    }
+
+    if (typeof cache === 'object' && cache?.production) {
       addServerHandler({
         handler: resolve(runtimeDir, 'cache')
       })

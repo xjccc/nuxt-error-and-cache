@@ -18,7 +18,6 @@ export default defineNuxtConfig({
     /**
      * cache: boolean | 
      * {
-        dev?: boolean
         production?: boolean
         lru?: Partial<LRU<string, { html: string }>>
         routes?: Record<string, unknown>,
@@ -28,14 +27,10 @@ export default defineNuxtConfig({
      */
     cache: {
       /**
-       * 开发模式下不会生效
+       * 默认生产环境添加缓存
        * 生效会在html-response header写入res.setHeader('server-cache-times', timer)
        */
-      dev: true
-      /**
-       * 默认开发环境添加缓存
-       */
-      production: true,
+      production: process.env.NODE_ENV === 'production',
       /**
        * lru-cache参数配置
        * 默认

@@ -1,5 +1,11 @@
 # nuxt-error-and-cache
 
+## 1.0.10
+
+### Patch Changes
+
+- 增加cache配置
+
 ## 1.0.9
 
 ### Patch Changes

@@ -41,7 +41,7 @@ function setCacheTimes (t: number) {
 const routesCache = { ...errorCacheConfig.cache.routes }
 
 export default fromNodeMiddleware((req: NodeIncomingMessage, res: NodeServerResponse, next: (err?: Error) => unknown) => {
-  if (process.env.NODE_ENV === 'development' && errorCacheConfig.cache.dev) { return next() }
+  if (!errorCacheConfig.cache.production) { return next() }
   const url = req.url!
   // 判断是否是exclude
   for (const item of excludePath) {

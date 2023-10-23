@@ -14,7 +14,6 @@ export default defineNuxtConfig({
   },
   errorCacheConfig: {
     cache: {
-      dev: false,
       lru: {},
       routes: {
         '/': 10
