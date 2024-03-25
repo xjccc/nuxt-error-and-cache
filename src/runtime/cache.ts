@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import { LRUCache } from 'lru-cache'
 import { NodeIncomingMessage, NodeServerResponse, fromNodeMiddleware } from 'h3'
-import { globSync } from 'glob'
+import { glob } from 'glob'
 import { useRuntimeConfig } from '#imports'
 
 const { errorCacheConfig } = useRuntimeConfig()
@@ -27,7 +27,7 @@ function getFilesPath () {
   excludeDir.forEach((dir) => {
     const workDir = resolve(process.cwd(), dir)
 
-    const files = globSync(`${workDir}/**/*`, { nodir: true })
+    const files = glob.sync(`${workDir}/**/*`, { nodir: true })
     paths = [...paths, ...files.map(p => p.replace(/^(?:.*\/)?([^/]+?|)(?:(?:.[^/.]*)?$)/, '$1').replace(/.\w+$/, ''))]
   })
 
