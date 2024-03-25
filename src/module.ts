@@ -1,21 +1,30 @@
 import { fileURLToPath } from 'url'
-import type LRU from 'lru-cache'
+import type { LRUCache } from 'lru-cache'
 import { defineNuxtModule, addPlugin, createResolver, addServerHandler } from '@nuxt/kit'
-import type { NuxtModule, RuntimeConfig } from '@nuxt/schema'
+import type { NuxtModule } from '@nuxt/schema'
 type CacheOptions = {
-  production?: boolean
-  lru?: Partial<LRU<string, { html: string }>>
+  lru?: Partial<LRUCache<string, { html: string }>>
   routes?: Record<string, unknown>,
   excludeDir?: string[]
   excludePath?: string[]
 }
 export interface ModuleOptions {
+  production: boolean
   cache?: CacheOptions | boolean
   collect?: boolean | { prefix?: string, path?: string }
 }
 
+declare module 'nuxt/schema' {
+  interface RuntimeConfig {
+    errorCacheConfig: {
+      production: boolean
+      cache?: CacheOptions | boolean
+      collect?: boolean | { prefix?: string, path?: string }
+    }
+  }
+}
+
 const defaultsCache = {
-  production: process.env.NODE_ENV === 'production',
   lru: {},
   routes: {},
   excludeDir: [],
@@ -28,11 +37,16 @@ const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
     configKey: 'errorCacheConfig'
   },
   defaults: {
+    production: process.env.NODE_ENV === 'production' || true,
     cache: defaultsCache,
     collect: true
   },
   setup (options, nuxt) {
-    nuxt.options.runtimeConfig.errorCacheConfig = { ...options as RuntimeConfig['errorCacheConfig'] }
+    nuxt.options.runtimeConfig.errorCacheConfig = options ?? {
+      production: process.env.NODE_ENV === 'production',
+      cache: defaultsCache,
+      collect: true
+    }
     const { resolve } = createResolver(import.meta.url)
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     nuxt.options.build.transpile.push(runtimeDir)
@@ -50,7 +64,7 @@ const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
       cache = defaultsCache
     }
 
-    if (typeof cache === 'object' && cache?.production) {
+    if (typeof cache === 'object' && options.production) {
       addServerHandler({
         handler: resolve(runtimeDir, 'cache')
       })

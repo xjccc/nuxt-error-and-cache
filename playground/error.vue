@@ -12,7 +12,7 @@ onMounted(() => {
   const { $write404 } = useNuxtApp()
   // $write404()
 
-  console.log(ggg)
+  console.log(oooo)
 })
 </script>
 

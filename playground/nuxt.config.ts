@@ -13,12 +13,13 @@ export default defineNuxtConfig({
     }
   },
   errorCacheConfig: {
+    production: true,
     cache: {
       lru: {},
       routes: {
         '/': 10
       },
-      excludeDir: ['./playground/server/api/nuxt'],
+      excludeDir: ['/server/api/nuxt'],
       excludePath: ['/api/nuxt/write-404', '/api/nuxt/get-error']
     },
     collect: {

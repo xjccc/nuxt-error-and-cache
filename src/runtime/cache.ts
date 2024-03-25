@@ -1,25 +1,36 @@
-import LRU from 'lru-cache'
+import { resolve } from 'path'
+import { LRUCache } from 'lru-cache'
 import { NodeIncomingMessage, NodeServerResponse, fromNodeMiddleware } from 'h3'
-import { createResolver } from '@nuxt/kit'
-import glob from 'glob'
+import { globSync } from 'glob'
 import { useRuntimeConfig } from '#imports'
 
 const { errorCacheConfig } = useRuntimeConfig()
 // 排除的文件、路径
-const excludeDir = errorCacheConfig.cache.excludeDir || []
-const excludePath = errorCacheConfig.cache.excludePath || []
+const cache = errorCacheConfig.cache ?? {}
+let excludeDir: string[] = []
+let excludePath: string[] = []
+let lru: Partial<LRUCache<string, { html: string }>> = {}
+let routes = {}
+const production = errorCacheConfig.production
+if (typeof cache === 'object' && cache) {
+  excludeDir = cache.excludeDir || []
+  excludePath = cache.excludePath || []
+  lru = cache.lru || {}
+  routes = cache.routes || {}
+}
 
 // 存储文件路径
 let paths: string[] = []
 
 // 获取exclude文件路径
 function getFilesPath () {
-  const { resolve } = createResolver(import.meta.url)
   excludeDir.forEach((dir) => {
     const workDir = resolve(process.cwd(), dir)
-    const files = glob.sync(`{${workDir}/**.*,}`)
+
+    const files = globSync(`${workDir}/**/*`, { nodir: true })
     paths = [...paths, ...files.map(p => p.replace(/^(?:.*\/)?([^/]+?|)(?:(?:.[^/.]*)?$)/, '$1').replace(/.\w+$/, ''))]
   })
+
   paths = [...paths, ...excludePath]
 }
 
@@ -29,19 +40,19 @@ const lruConfig = {
   max: 5000,
   ttl: 1000 * 60 * 5,
   allowStale: true,
-  ...errorCacheConfig.cache?.lru
+  ...lru
 }
 
-const cachePage = new LRU<string, { html: string }>(lruConfig)
+const cachePage = new LRUCache<string, { html: string }>(lruConfig)
 
 function setCacheTimes (t: number) {
   return 1000 * 60 * t
 }
 
-const routesCache = { ...errorCacheConfig.cache.routes }
+const routesCache: Record<string, number> = { ...routes }
 
 export default fromNodeMiddleware((req: NodeIncomingMessage, res: NodeServerResponse, next: (err?: Error) => unknown) => {
-  if (!errorCacheConfig.cache.production) { return next() }
+  if (!production) { return next() }
   const url = req.url!
   // 判断是否是exclude
   for (const item of excludePath) {

@@ -15,11 +15,11 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   modules: ['nuxt-error-and-cache'],
   errorCacheConfig: {
+    production: process.env.NODE_ENV === 'production',
     /**
      * cache: boolean | 
      * {
-        production?: boolean
-        lru?: Partial<LRU<string, { html: string }>>
+        lru?: Partial<LRUCache<string, { html: string }>>
         routes?: Record<string, unknown>,
         excludeDir?: string[]
         excludePath?: string[]
@@ -30,7 +30,6 @@ export default defineNuxtConfig({
        * 默认生产环境添加缓存
        * 生效会在html-response header写入res.setHeader('server-cache-times', timer)
        */
-      production: process.env.NODE_ENV === 'production',
       /**
        * lru-cache参数配置
        * 默认
