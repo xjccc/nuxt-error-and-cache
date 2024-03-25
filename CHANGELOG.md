@@ -1,5 +1,11 @@
 # nuxt-error-and-cache
 
+## 1.1.0
+
+### Minor Changes
+
+- remove server @nuxt/kit
+
 ## 1.0.11
 
 ### Patch Changes
