@@ -1,5 +1,11 @@
 # nuxt-error-and-cache
 
+## 1.1.2
+
+### Patch Changes
+
+- import glob from glob
+
 ## 1.1.1
 
 ### Patch Changes
