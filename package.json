@@ -26,13 +26,14 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.11.1",
-    "glob": "^10.3.10",
+    "glob": "^8.1.0",
     "lru-cache": "^10.2.0"
   },
   "devDependencies": {
     "@nuxt/module-builder": "^0.5.5",
     "@nuxt/schema": "^3.11.1",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "@types/glob": "^8.1.0",
     "eslint": "^8.57.0",
     "nuxt": "^3.11.1"
   }
