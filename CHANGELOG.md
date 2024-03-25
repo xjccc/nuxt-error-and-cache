@@ -1,5 +1,11 @@
 # nuxt-error-and-cache
 
+## 1.1.1
+
+### Patch Changes
+
+- glob@8
+
 ## 1.1.0
 
 ### Minor Changes
