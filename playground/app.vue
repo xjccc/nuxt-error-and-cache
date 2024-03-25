@@ -3,5 +3,7 @@
 </template>
 
 <script setup>
-console.log(111)
+import { useRuntimeConfig } from '#app'
+const config = useRuntimeConfig()
+console.log(config)
 </script>
