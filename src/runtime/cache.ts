@@ -1,6 +1,7 @@
-import { resolve } from 'path'
+import { resolve } from 'node:path'
 import { LRUCache } from 'lru-cache'
-import { NodeIncomingMessage, NodeServerResponse, fromNodeMiddleware } from 'h3'
+import type { NodeIncomingMessage, NodeServerResponse } from 'h3'
+import { fromNodeMiddleware } from 'h3'
 import glob from 'glob'
 import { useRuntimeConfig } from '#imports'
 
@@ -52,20 +53,22 @@ function setCacheTimes (t: number) {
 const routesCache: Record<string, number> = { ...routes }
 
 export default fromNodeMiddleware((req: NodeIncomingMessage, res: NodeServerResponse, next: (err?: Error) => unknown) => {
-  if (!production) { return next() }
+  if (!production) {
+    return next()
+  }
   const url = req.url!
   // 判断是否是exclude
   for (const item of excludePath) {
-    if (url.includes(item)) { return next() }
+    if (url.includes(item)) {
+      return next()
+    }
   }
 
-  let regUrl = ''
   let regKey = ''
   const keys = [...paths, ...Object.keys(routesCache)]
 
   for (const item of keys) {
     if (item === '/' && url === '/') {
-      regUrl = '/'
       regKey = '/'
       break
     }
@@ -74,7 +77,6 @@ export default fromNodeMiddleware((req: NodeIncomingMessage, res: NodeServerResp
       if (!routesCache[item]) {
         routesCache[item] = 0
       }
-      regUrl = url
       regKey = item
       break
     }
@@ -84,9 +86,11 @@ export default fromNodeMiddleware((req: NodeIncomingMessage, res: NodeServerResp
   if (url.includes('nocache=true')) {
     const link = url.replace(/(\?|&)?nocache=true/, '')
     cachePage.delete(link)
-  } else if (url.includes('nocache=all')) {
+  }
+  else if (url.includes('nocache=all')) {
     cachePage.clear()
-  } else {
+  }
+  else {
     const html = cachePage.get(url)
 
     if (html && timer) {

@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   errorCacheConfig: {
     production: process.env.NODE_ENV === 'production',
     /**
-     * cache: boolean | 
+     * cache: boolean |
      * {
         lru?: Partial<LRUCache<string, { html: string }>>
         routes?: Record<string, unknown>,

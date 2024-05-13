@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises'
-import { fileURLToPath } from 'url'
-import { resolve, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { dirname, resolve } from 'node:path'
 import { defineEventHandler, readBody } from 'h3'
 import { useRuntimeConfig } from '#imports'
 
@@ -25,7 +25,8 @@ async function fileCreate (filename: string) {
     // 检查文件夹是否存在，如果不存在则创建
     try {
       await fs.access(dir)
-    } catch (err) {
+    }
+    catch (err) {
       // 文件夹不存在，创建它
       await fs.mkdir(dir, { recursive: true })
     }
@@ -35,11 +36,13 @@ async function fileCreate (filename: string) {
       await fs.access(filename)
       // 文件已存在，返回 true
       return true
-    } catch (err) {
+    }
+    catch (err) {
       // 文件不存在，创建文件
       await fs.writeFile(filename, '')
     }
-  } catch (error) {
+  }
+  catch (error) {
     // 处理可能的错误
     console.error('An error occurred:', error)
     throw error
@@ -73,9 +76,15 @@ async function fileWrite (
 
 export default defineEventHandler(async (event) => {
   const { errorCacheConfig } = useRuntimeConfig()
-  let collect = { path: '', prefix: 'nuxt' }
+  let collect = {
+    path: '',
+    prefix: 'nuxt'
+  }
   if (typeof errorCacheConfig.collect === 'object') {
-    collect = { ...collect, ...errorCacheConfig.collect }
+    collect = {
+      ...collect,
+      ...errorCacheConfig.collect
+    }
   }
 
   const body = await readBody(event)
