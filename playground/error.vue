@@ -10,9 +10,9 @@ const route = useRoute()
 
 onMounted(() => {
   const { $write404 } = useNuxtApp()
-  // $write404()
-
-  console.log(oooo)
+  $write404()
+  // @ts-expect-error ooo is not defined
+  console.log(route, oooo)
 })
 </script>
 

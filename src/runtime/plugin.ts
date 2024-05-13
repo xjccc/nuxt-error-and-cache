@@ -2,7 +2,7 @@ import { defineNuxtPlugin, useRequestHeaders, useRoute } from '#app'
 
 export default defineNuxtPlugin((nuxtApp) => {
   const headers = useRequestHeaders()
-  nuxtApp.vueApp.config.errorHandler = (error, context) => {
+  nuxtApp.vueApp.config.errorHandler = (error) => {
     const err = error as Error
     const route = useRoute()
 

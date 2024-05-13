@@ -6,6 +6,7 @@
     </button>
   </div>
 </template>
+
 <script setup lang="ts">
 console.log('index ')
 console.log(ggg)
@@ -14,5 +15,6 @@ const test = () => {
   $fetch('/api/get-ip')
 }
 </script>
+
 <style scoped>
 </style>

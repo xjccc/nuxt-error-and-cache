@@ -1,4 +1,5 @@
 import { defineNuxtPlugin, useRequestHeaders } from '#imports'
+
 export default defineNuxtPlugin(() => {
   const headers = useRequestHeaders()
   return {

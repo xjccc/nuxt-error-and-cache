@@ -1,10 +1,11 @@
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from 'node:url'
 import type { LRUCache } from 'lru-cache'
-import { defineNuxtModule, addPlugin, createResolver, addServerHandler } from '@nuxt/kit'
+import { addPlugin, addServerHandler, createResolver, defineNuxtModule } from '@nuxt/kit'
 import type { NuxtModule } from '@nuxt/schema'
-type CacheOptions = {
+
+interface CacheOptions {
   lru?: Partial<LRUCache<string, { html: string }>>
-  routes?: Record<string, unknown>,
+  routes?: Record<string, unknown>
   excludeDir?: string[]
   excludePath?: string[]
 }
