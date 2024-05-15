@@ -1,5 +1,40 @@
 # nuxt-error-and-cache
 
+## v1.2.0
+
+
+### 🚀 Enhancements
+
+- 创建nuxt-error-and-cache ([dd3d7ee](https://github.com/xjccc/nuxt-error-and-cache/commit/dd3d7ee))
+- 修改nuxt-error-and-cache, 增加exclude ([bb7cf0a](https://github.com/xjccc/nuxt-error-and-cache/commit/bb7cf0a))
+- Cache.production ([46700b7](https://github.com/xjccc/nuxt-error-and-cache/commit/46700b7))
+- Antfu/eslint-config ([12c9c65](https://github.com/xjccc/nuxt-error-and-cache/commit/12c9c65))
+- Husky ([a5e082e](https://github.com/xjccc/nuxt-error-and-cache/commit/a5e082e))
+
+### 🩹 Fixes
+
+- 修改最低支持版本 ([41b5bf7](https://github.com/xjccc/nuxt-error-and-cache/commit/41b5bf7))
+- 更新playground ([a1a806c](https://github.com/xjccc/nuxt-error-and-cache/commit/a1a806c))
+- ResEnd this指向问题修复 ([cc8ca71](https://github.com/xjccc/nuxt-error-and-cache/commit/cc8ca71))
+- 修改nuxt-error-and-cache/path, prefix问题 ([ba964f5](https://github.com/xjccc/nuxt-error-and-cache/commit/ba964f5))
+- Delete @nuxt/kit from server ([8cfa9b1](https://github.com/xjccc/nuxt-error-and-cache/commit/8cfa9b1))
+- Import glob ([9b50cfd](https://github.com/xjccc/nuxt-error-and-cache/commit/9b50cfd))
+- Glob@8 ([d231b34](https://github.com/xjccc/nuxt-error-and-cache/commit/d231b34))
+- Import glob from glob ([4767292](https://github.com/xjccc/nuxt-error-and-cache/commit/4767292))
+
+### 📦 Build
+
+- 修改logs路径为工作目录 ([0a9877a](https://github.com/xjccc/nuxt-error-and-cache/commit/0a9877a))
+- Delete cache.dev ([adbf721](https://github.com/xjccc/nuxt-error-and-cache/commit/adbf721))
+
+### 🏡 Chore
+
+- Version ([a2caa71](https://github.com/xjccc/nuxt-error-and-cache/commit/a2caa71))
+
+### ❤️ Contributors
+
+- Xjccc ([@xjccc](http://github.com/xjccc))
+
 ## 1.1.2
 
 ### Patch Changes
