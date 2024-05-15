@@ -44,11 +44,9 @@ export default defineNuxtConfig({
         '/aaa': 3
       },
       /**
-       * 相对工作目录路径
        * 排除的url地址、server端请求url（./server/api）
        */
-      excludeDir: ['./playground/server/api/nuxt'],
-      excludePath: ['/api/nuxt/write-404']
+      excludePath: ['/api/nuxt/write-404', '/api/*']
     },
     /**
      * 是否采集运行时错误
