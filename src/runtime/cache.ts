@@ -1,41 +1,20 @@
-import { resolve } from 'node:path'
 import { LRUCache } from 'lru-cache'
 import type { NodeIncomingMessage, NodeServerResponse } from 'h3'
 import { fromNodeMiddleware } from 'h3'
-import glob from 'glob'
 import { useRuntimeConfig } from '#imports'
 
 const { errorCacheConfig } = useRuntimeConfig()
 // 排除的文件、路径
 const cache = errorCacheConfig.cache ?? {}
-let excludeDir: string[] = []
 let excludePath: string[] = []
 let lru: Partial<LRUCache<string, { html: string }>> = {}
 let routes = {}
 const production = errorCacheConfig.production
 if (typeof cache === 'object' && cache) {
-  excludeDir = cache.excludeDir || []
   excludePath = cache.excludePath || []
   lru = cache.lru || {}
   routes = cache.routes || {}
 }
-
-// 存储文件路径
-let paths: string[] = []
-
-// 获取exclude文件路径
-function getFilesPath () {
-  excludeDir.forEach((dir) => {
-    const workDir = resolve(process.cwd(), dir)
-
-    const files = glob.sync(`${workDir}/**/*`, { nodir: true })
-    paths = [...paths, ...files.map(p => p.replace(/^(?:.*\/)?([^/]+?|)(?:(?:.[^/.]*)?$)/, '$1').replace(/.\w+$/, ''))]
-  })
-
-  paths = [...paths, ...excludePath]
-}
-
-getFilesPath()
 
 const lruConfig = {
   max: 5000,
@@ -65,7 +44,7 @@ export default fromNodeMiddleware((req: NodeIncomingMessage, res: NodeServerResp
   }
 
   let regKey = ''
-  const keys = [...paths, ...Object.keys(routesCache)]
+  const keys = [...excludePath, ...Object.keys(routesCache)]
 
   for (const item of keys) {
     if (item === '/' && url === '/') {

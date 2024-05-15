@@ -6,7 +6,6 @@ import type { NuxtModule } from '@nuxt/schema'
 interface CacheOptions {
   lru?: Partial<LRUCache<string, { html: string }>>
   routes?: Record<string, unknown>
-  excludeDir?: string[]
   excludePath?: string[]
 }
 export interface ModuleOptions {
@@ -28,7 +27,6 @@ declare module 'nuxt/schema' {
 const defaultsCache = {
   lru: {},
   routes: {},
-  excludeDir: [],
   excludePath: []
 }
 
@@ -43,11 +41,7 @@ const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
     collect: true
   },
   setup (options, nuxt) {
-    nuxt.options.runtimeConfig.errorCacheConfig = options ?? {
-      production: process.env.NODE_ENV === 'production',
-      cache: defaultsCache,
-      collect: true
-    }
+    nuxt.options.runtimeConfig.errorCacheConfig = options
     const { resolve } = createResolver(import.meta.url)
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     nuxt.options.build.transpile.push(runtimeDir)

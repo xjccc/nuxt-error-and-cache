@@ -19,8 +19,7 @@ export default defineNuxtConfig({
       routes: {
         '/': 10
       },
-      excludeDir: ['/server/api/nuxt'],
-      excludePath: ['/api/nuxt/write-404', '/api/nuxt/get-error']
+      excludePath: ['/api/*']
     },
     collect: {
       path: './notExist'
