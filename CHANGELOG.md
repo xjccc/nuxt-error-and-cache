@@ -1,5 +1,21 @@
 # nuxt-error-and-cache
 
+## v1.3.0
+
+[compare changes](https://github.com/xjccc/nuxt-error-and-cache/compare/v1.2.0...v1.3.0)
+
+### 🚀 Enhancements
+
+- Changelogen ([fe32da1](https://github.com/xjccc/nuxt-error-and-cache/commit/fe32da1))
+
+### 🩹 Fixes
+
+- Production ([0c14062](https://github.com/xjccc/nuxt-error-and-cache/commit/0c14062))
+
+### ❤️ Contributors
+
+- Xjccc ([@xjccc](http://github.com/xjccc))
+
 ## v1.2.0
 
 
