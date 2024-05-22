@@ -36,7 +36,7 @@ const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
     configKey: 'errorCacheConfig'
   },
   defaults: {
-    production: process.env.NODE_ENV === 'production' || true,
+    production: process.env.NODE_ENV === 'production',
     cache: defaultsCache,
     collect: true
   },
