@@ -1,5 +1,18 @@
 # nuxt-error-and-cache
 
+## v1.3.1
+
+[compare changes](https://github.com/xjccc/nuxt-error-and-cache/compare/v1.3.0...v1.3.1)
+
+### 🩹 Fixes
+
+- Postinstall -> prepare ([0869c30](https://github.com/xjccc/nuxt-error-and-cache/commit/0869c30))
+- Echo:husky ([2b3f9ff](https://github.com/xjccc/nuxt-error-and-cache/commit/2b3f9ff))
+
+### ❤️ Contributors
+
+- Xjccc ([@xjccc](http://github.com/xjccc))
+
 ## v1.3.0
 
 [compare changes](https://github.com/xjccc/nuxt-error-and-cache/compare/v1.2.0...v1.3.0)
