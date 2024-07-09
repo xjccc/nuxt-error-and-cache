@@ -9,13 +9,13 @@ dependencies:
     specifier: ^3.12.3
     version: 3.12.3(magicast@0.3.4)(rollup@3.29.4)
   lru-cache:
-    specifier: ^10.3.1
-    version: 10.3.1
+    specifier: ^11.0.0
+    version: 11.0.0
 
 devDependencies:
   '@antfu/eslint-config':
     specifier: ^2.21.3
-    version: 2.21.3(@vue/compiler-sfc@3.4.29)(eslint@9.6.0)(typescript@5.4.5)
+    version: 2.21.3(@vue/compiler-sfc@3.4.31)(eslint@9.6.0)(typescript@5.4.5)
   '@commitlint/cli':
     specifier: ^19.3.0
     version: 19.3.0(@types/node@20.12.11)(typescript@5.4.5)
@@ -62,7 +62,7 @@ packages:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  /@antfu/eslint-config@2.21.3(@vue/compiler-sfc@3.4.29)(eslint@9.6.0)(typescript@5.4.5):
+  /@antfu/eslint-config@2.21.3(@vue/compiler-sfc@3.4.31)(eslint@9.6.0)(typescript@5.4.5):
     resolution: {integrity: sha512-nY2pYSJGo5utj8LSMHIkJVMv04PTX9Cpu78ciCgkO5R5DOHyilvXXAEe+iwXkvaaRTmtDqhnhbIPFxKCiaqFNA==}
     hasBin: true
     peerDependencies:
@@ -134,7 +134,7 @@ packages:
       eslint-plugin-vitest: 0.5.4(@typescript-eslint/eslint-plugin@7.15.0)(eslint@9.6.0)(typescript@5.4.5)
       eslint-plugin-vue: 9.27.0(eslint@9.6.0)
       eslint-plugin-yml: 1.14.0(eslint@9.6.0)
-      eslint-processor-vue-blocks: 0.1.2(@vue/compiler-sfc@3.4.29)(eslint@9.6.0)
+      eslint-processor-vue-blocks: 0.1.2(@vue/compiler-sfc@3.4.31)(eslint@9.6.0)
       globals: 15.8.0
       jsonc-eslint-parser: 2.4.0
       local-pkg: 0.5.0
@@ -5127,13 +5127,13 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-processor-vue-blocks@0.1.2(@vue/compiler-sfc@3.4.29)(eslint@9.6.0):
+  /eslint-processor-vue-blocks@0.1.2(@vue/compiler-sfc@3.4.31)(eslint@9.6.0):
     resolution: {integrity: sha512-PfpJ4uKHnqeL/fXUnzYkOax3aIenlwewXRX8jFinA1a2yCFnLgMuiH3xvCgvHHUlV2xJWQHbCTdiJWGwb3NqpQ==}
     peerDependencies:
       '@vue/compiler-sfc': ^3.3.0
       eslint: ^8.50.0 || ^9.0.0
     dependencies:
-      '@vue/compiler-sfc': 3.4.29
+      '@vue/compiler-sfc': 3.4.31
       eslint: 9.6.0
     dev: true
 
@@ -6510,6 +6510,12 @@ packages:
   /lru-cache@10.3.1:
     resolution: {integrity: sha512-9/8QXrtbGeMB6LxwQd4x1tIMnsmUxMvIH/qWGsccz6bt9Uln3S+sgAaqfQNhbGA8ufzs2fHuP/yqapGgP9Hh2g==}
     engines: {node: '>=18'}
+    dev: true
+
+  /lru-cache@11.0.0:
+    resolution: {integrity: sha512-Qv32eSV1RSCfhY3fpPE2GNZ8jgM9X7rdAfemLWqTUxwiyIC4jJ6Sy0fZ8H+oLWevO6i4/bizg7c8d8i6bxrzbA==}
+    engines: {node: 20 || >=22}
+    dev: false
 
   /lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
