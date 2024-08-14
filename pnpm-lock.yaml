@@ -23,8 +23,8 @@ devDependencies:
     specifier: ^19.2.2
     version: 19.2.2
   '@nuxt/module-builder':
-    specifier: ^0.8.1
-    version: 0.8.1(@nuxt/kit@3.12.4)(nuxi@3.12.0)(typescript@5.4.5)
+    specifier: ^0.8.3
+    version: 0.8.3(@nuxt/kit@3.12.4)(nuxi@3.12.0)(typescript@5.4.5)
   '@nuxt/schema':
     specifier: ^3.12.4
     version: 3.12.4(rollup@3.29.4)
@@ -47,8 +47,8 @@ devDependencies:
     specifier: ^9.1.4
     version: 9.1.4
   lint-staged:
-    specifier: ^15.2.8
-    version: 15.2.8
+    specifier: ^15.2.9
+    version: 15.2.9
   nuxt:
     specifier: ^3.12.4
     version: 3.12.4(@types/node@20.12.11)(eslint@9.9.0)(rollup@3.29.4)(typescript@5.4.5)(vite@5.3.4)
@@ -1862,11 +1862,11 @@ packages:
       - rollup
       - supports-color
 
-  /@nuxt/module-builder@0.8.1(@nuxt/kit@3.12.4)(nuxi@3.12.0)(typescript@5.4.5):
-    resolution: {integrity: sha512-pWIRF2x6zx63WEh3z7zM37CTfwhsWz21QnFWOeLacqDIBF1G92cRxF5BiS8mn7qfybFop8HRyZGzGDQeCsI20A==}
+  /@nuxt/module-builder@0.8.3(@nuxt/kit@3.12.4)(nuxi@3.12.0)(typescript@5.4.5):
+    resolution: {integrity: sha512-m9W3P6f6TFnHmVFKRo/2gELWDi3r0k8i93Z1fY5z410GZmttGVPv8KgRgOgC79agRi/OtpbyG3BPRaWdbDZa5w==}
     hasBin: true
     peerDependencies:
-      '@nuxt/kit': ^3.12.2
+      '@nuxt/kit': ^3.12.4
       nuxi: ^3.12.0
     dependencies:
       '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@3.29.4)
@@ -1877,7 +1877,7 @@ packages:
       mlly: 1.7.1
       nuxi: 3.12.0
       pathe: 1.1.2
-      pkg-types: 1.1.1
+      pkg-types: 1.1.3
       tsconfck: 3.1.1(typescript@5.4.5)
       unbuild: 2.0.0(typescript@5.4.5)
     transitivePeerDependencies:
@@ -3578,7 +3578,7 @@ packages:
       ohash: 1.1.3
       pathe: 1.1.2
       perfect-debounce: 1.0.0
-      pkg-types: 1.1.1
+      pkg-types: 1.1.3
       rc9: 2.1.2
     dev: true
 
@@ -6150,8 +6150,8 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /lint-staged@15.2.8:
-    resolution: {integrity: sha512-PUWFf2zQzsd9EFU+kM1d7UP+AZDbKFKuj+9JNVTBkhUFhbg4MAt6WfyMMwBfM4lYqd4D2Jwac5iuTu9rVj4zCQ==}
+  /lint-staged@15.2.9:
+    resolution: {integrity: sha512-BZAt8Lk3sEnxw7tfxM7jeZlPRuT4M68O0/CwZhhaw6eeWu0Lz5eERE3m386InivXB64fp/mDID452h48tvKlRQ==}
     engines: {node: '>=18.12.0'}
     hasBin: true
     dependencies:
@@ -6340,7 +6340,7 @@ packages:
       mlly: 1.7.1
       regexp-tree: 0.1.27
       type-level-regexp: 0.1.17
-      ufo: 1.5.3
+      ufo: 1.5.4
       unplugin: 1.11.0
     dev: true
 
@@ -6568,7 +6568,7 @@ packages:
       acorn: 8.12.1
       pathe: 1.1.2
       pkg-types: 1.1.3
-      ufo: 1.5.3
+      ufo: 1.5.4
 
   /mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -6933,7 +6933,7 @@ packages:
       consola: 3.2.3
       execa: 8.0.1
       pathe: 1.1.2
-      ufo: 1.5.3
+      ufo: 1.5.4
 
   /nypm@0.3.9:
     resolution: {integrity: sha512-BI2SdqqTHg2d4wJh8P9A1W+bslg33vOE9IZDY6eR2QC+Pu1iNBVZUqczrd43rJb+fMzHU7ltAYKsEFY/kHMFcw==}
@@ -6958,7 +6958,7 @@ packages:
     dependencies:
       destr: 2.0.3
       node-fetch-native: 1.6.4
-      ufo: 1.5.3
+      ufo: 1.5.4
     dev: true
 
   /ohash@1.1.3:
@@ -8547,9 +8547,6 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true
-
-  /ufo@1.5.3:
-    resolution: {integrity: sha512-Y7HYmWaFwPUmkoQCUIAYpKqkOf+SbVj/2fJJZ4RJMCfZp0rTGwRbzQD+HghfnhKOjL9E01okqz+ncJskGYfBNw==}
 
   /ufo@1.5.4:
     resolution: {integrity: sha512-UsUk3byDzKd04EyoZ7U4DOlxQaD14JUKQl6/P7wiX4FNvUfm3XL246n9W5AmqwW5RSFJ27NAuM0iLscAOYUiGQ==}
