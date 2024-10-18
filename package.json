@@ -36,23 +36,23 @@
     }
   },
   "dependencies": {
-    "@nuxt/kit": "^3.12.4",
-    "lru-cache": "^11.0.0"
+    "@nuxt/kit": "^3.13.2",
+    "lru-cache": "^11.0.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.27.0",
-    "@commitlint/cli": "^19.4.0",
-    "@commitlint/config-conventional": "^19.2.2",
-    "@nuxt/module-builder": "^0.8.3",
-    "@nuxt/schema": "^3.12.4",
+    "@antfu/eslint-config": "^2.27.3",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "@nuxt/module-builder": "^0.8.4",
+    "@nuxt/schema": "^3.13.2",
     "@types/glob": "^8.1.0",
-    "changelogen": "^0.5.5",
-    "commitizen": "^4.3.0",
-    "cz-git": "^1.9.4",
-    "eslint": "^9.9.0",
-    "husky": "^9.1.5",
-    "lint-staged": "^15.2.9",
-    "nuxt": "^3.12.4"
+    "changelogen": "^0.5.7",
+    "commitizen": "^4.3.1",
+    "cz-git": "^1.10.1",
+    "eslint": "^9.13.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "nuxt": "^3.13.2"
   },
   "husky": {
     "hooks": {
